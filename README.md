@@ -26,11 +26,11 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly available/accessible, in addition to restricting unauthorized access to the network.
+Load balancing ensures that the application will be highly _available/accessible_, in addition to restricting unauthorized access to the network.
 
 _Load Balancers Protect the application's Availability, or the ability to connect to a one of multiple connected webservers in the most efficient manner possible.  The advantage of a jump box lies essentially in the fact that it is the sole connection and access point that can securely connect to the web servers.  Thus, the overall number of vulnerable access points for the entire network security group is minimized, along with the corresponding possible vectors of attack.  Furthermore, any sort of remote connection to the jump box can be more easily documented, intercepted, and mitigated; since Network Security Professionals can direct most of their time and attention to the security of one virtual machine rather than each one individually._
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the settings/configuration and system data.
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _settings/configuration and system data._
 	- _Filebeat specifically monitors log files (or other specified locations).  Filebeat then aggregates log events and will forward such information for the purpose of indexing to such programs as Elasticsearch or Logstash._
 	- _Metricbeat monitors and collects metric data from the OS and services running on specified Servers/Virtual Machines.  It collects this data and forwards it to the specified output of the user, such as Elasticsearch or Logstash._
 
@@ -56,12 +56,12 @@ Machines within the network can only be accessed by Jump-Box-Provisioner VM, onc
 
 A summary of the access policies in place can be found in the table below.
 
-| Name                     | Publicly Accessible | Allowed IP Addresses                                                                   |
-|--------------------------|---------------------|----------------------------------------------------------------------------------------|
-| Jump-Box-Provisioner     | No                  | (SSH only from Local Host IP 107.220.192.108/32)                                       |
-| web-1                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)                   |
-| web-2                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)                   |
-| XCorpRed-Team-ELK-Server | No                  | (SSH from 10.1.0.0/16 and HTTP from Local Host to (http://23.99.195.0:5601/app/kibana) |
+| Name                     | Publicly Accessible | Allowed IP Addresses                                                                      |
+|--------------------------|---------------------|-------------------------------------------------------------------------------------------|
+| Jump-Box-Provisioner     | No                  | (SSH only from Local Host IP 107.220.192.108/32)                                          |
+| web-1                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)                      |
+| web-2                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)                      |
+| XCorpRed-Team-ELK-Server | No                  | (SSH from 10.1.0.0/16 and HTTP from Local Host IP to (http://23.99.195.0:5601/app/kibana) |
 
 
 ### Elk Configuration
@@ -112,7 +112,7 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to _/etc/ansible/ansible.cfg_ to check that the installation worked as expected.  
 	-Network communcations can be confirmed by running bash command _ansible all -m ping_ in while attached to control node.
 
-_TODO: Answer the following questions to fill in the blanks:_
+### FAQ
 - _The playbook is a YAML file.  For example, _Ansible/install-elk.yml.txt_ is the playbook for installing the necessary programs for the ELK server to run.  This file must be copied to the Ansible Container that is attached and running on the Jump Box VM._
 - _One must update the _/etc/ansible/hosts_ file in order to make Ansible run the playbook on a specific machine. One specifies which machine to install the ELk Server on versus which to install the Filebeat on by first creating separate YAML playbooks for each task; each one either installing ELK or Filebeat.  Then, one must create and edit a separate Filebeat Configuration file within their Ansible Container and save this file to the _/etc/ansible/roles_ Directory, such as _Ansible/filebeat-config.yml.txt_.  Editing this Configuration file specifies via Private IP which VM will have Filebeat installed on it.  Specifically by naming the host of the output for Elasticsearch, the host machine's corresponding Elasticsearch credentials (under _output.elasticsearch_), and the specified host for interfacing with Kibana (under _setup.kibana_). All of this taking place, of course, assuming one has already edited their _/etc/ansible/hosts_ file to reflect their desired groupings of VM's between Webservers and ELK._
 - One should then navigate to _http://http://23.99.195.0:5601/app/kibana_ to verify that their ELK Server is receiving Metricbeat and Logbeat data displayed on their Kibana Interface.
