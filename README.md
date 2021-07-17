@@ -114,7 +114,8 @@ _TODO: Answer the following questions to fill in the blanks:_
 **Bonus**
 
 The specific commands a user will need to run and download the playbook, update the files, and run the playbooks to install ELK, Filebeat, and Metricbeat are as follows:
-SSH to your Jump Box VM with ssh azadmin@Jump-Box-Provisioner-IP
+
+	SSH to your Jump Box VM with ssh azadmin@Jump-Box-Provisioner-IP
 
 	Start and Attach Ansible Container with _sudo docker start <docker-name>_ followed by _sudo docker attach <docker-name>_
 
