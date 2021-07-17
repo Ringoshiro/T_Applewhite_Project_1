@@ -109,21 +109,31 @@ SSH into the control node and follow the steps below:
 _TODO: Answer the following questions to fill in the blanks:_
 - _The playbook is a YAML file.  For example, _Ansible/install-elk.yml.txt_ is the playbook for installing the necessary programs for the ELK server to run.  This file must be copied to the Ansible Container that is attached and running on the Jump Box VM._
 - _One must update the _/etc/ansible/hosts_ file in order to make Ansible run the playbook on a specific machine. One specifies which machine to install the ELk Server on versus which to install the Filebeat on by first creating separate YAML playbooks for each task; each one either installing ELK or Filebeat.  Then, one must create and edit a separate Filebeat Configuration file within their Ansible Container and save this file to the _/etc/ansible/roles_ Directory, such as _Ansible/filebeat-config.yml.txt_.  Editing this Configuration file specifies via Private IP which VM will have Filebeat installed on it.  Specifically by naming the host of the output for Elasticsearch, the host machine's corresponding Elasticsearch credentials (under output.elasticsearch), and the specified host for interfacing with Kibana (under setup.kibana). All of this taking place, of course, assuming one has already edited their _/etc/ansible/hosts_ file to reflect their desired groupings of VM's between Webservers and ELK._
-- _One should then navigate to _http://[ELK.VM.Public.IP]:5601/app/kibana_ to verify that their ELK Server is receiving Metricbeat and Logbeat data displayed on their Kibana Interface.
+- _One should then navigate to _http://[ELK.VM.Public.IP]:5601/app/kibana_ to verify that their ELK Server is receiving Metricbeat and Logbeat data displayed on their Kibana Interface._
 
 **Bonus**
 
 The specific commands a user will need to run and download the playbook, update the files, and run the playbooks to install ELK, Filebeat, and Metricbeat are as follows:
-SSH to your Jump Box VM with ssh azadmin@<Jump-Box-Provisioner-PublicIP>
-Start and Attach Ansible Container with _sudo docker start <docker-name>_ followed by _sudo docker attach <docker-name>_
-Navigate to _/etc/ansible_ and configure _/etc/ansible/hosts_ to reflect Webservers and ELK hosts with _nano /etc/ansible/hosts_.
-Edit _/etc/ansible/ansible.cfg_ file to ensure Python interpreter with nano /etc/ansible/ansible.cfg
-Run the necessary Playbooks:
-ansible-playbook /etc/ansible/pentest.yml
-ansible-playbook /etc/ansible/install-elk.yml
-nano /etc/ansible/roles/filebeat-config.yml
-ansible-playbook /etc/ansible/roles/filebeat-playbook.yml
-nano /etc/ansible/metricbeat-config.yml
-ansible-playbook /etc/ansible/metricbeat-playbook.yml
+SSH to your Jump Box VM with ssh azadmin@Jump-Box-Provisioner-IP
+
+	Start and Attach Ansible Container with _sudo docker start <docker-name>_ followed by _sudo docker attach <docker-name>_
+
+	Navigate to _/etc/ansible_ and configure _/etc/ansible/hosts_ to reflect Webservers and ELK hosts with _nano /etc/ansible/hosts_.
+
+	Edit _/etc/ansible/ansible.cfg_ file to ensure Python interpreter with nano /etc/ansible/ansible.cfg
+
+	Run the necessary Playbooks:
+
+	ansible-playbook /etc/ansible/pentest.yml
+	
+	ansible-playbook /etc/ansible/install-elk.yml
+
+	nano /etc/ansible/roles/filebeat-config.yml
+
+	ansible-playbook /etc/ansible/roles/filebeat-playbook.yml
+
+	nano /etc/ansible/metricbeat-config.yml
+
+	ansible-playbook /etc/ansible/metricbeat-playbook.yml
 
 If no errors are observed in the output of the above playbooks, then navigate to http://[ELK.VM.PUBLIC.IP]:5601/app/kibana_ to review beat data recorded by ELK Server deployment.
