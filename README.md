@@ -56,12 +56,12 @@ Machines within the network can only be accessed by Jump-Box-Provisioner VM, onc
 
 A summary of the access policies in place can be found in the table below.
 
-| Name                     | Publicly Accessible | Allowed IP Addresses                                                  |
-|--------------------------|---------------------|-----------------------------------------------------------------------|
-| Jump-Box-Provisioner     | No                  | (SSH only from Local Host IP 107.220.192.108/32)                      |
-| web-1                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)  |
-| web-2                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)  |
-| XCorpRed-Team-ELK-Server | No                  | (SSH from 10.1.0.0/16 and HTTP via LocalHost:Port 5601)               |
+| Name                     | Publicly Accessible | Allowed IP Addresses                                                                   |
+|--------------------------|---------------------|----------------------------------------------------------------------------------------|
+| Jump-Box-Provisioner     | No                  | (SSH only from Local Host IP 107.220.192.108/32)                                       |
+| web-1                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)                   |
+| web-2                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)                   |
+| XCorpRed-Team-ELK-Server | No                  | (SSH from 10.1.0.0/16 and HTTP from Local Host to (http://23.99.195.0:5601/app/kibana) |
 
 
 ### Elk Configuration
@@ -84,12 +84,13 @@ The following screenshot displays the result of running `docker ps` after succes
 This ELK server is configured to monitor the following machines:
 	
 	[webservers]
-	web-1: Private IP: _10.0.0.5 _	
-	web-2: Private IP: _10.0.0.6 _
+	- web-1: Private IP: _10.0.0.5 _	
+	- web-2: Private IP: _10.0.0.6 _
 
 We have installed the following Beats on these machines:
-- Filebeat
-- Metricbeat
+	
+	- Filebeat
+	- Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 - _Filebeat is used to monitor specified log files for real-time events on the target machine for the ELK Server, such as unauthorized SSH attempts on the specified webservers.  Whereas Metricbeat monitors the system's overall metrics like CPU Usage and Memory, or it can be used to collect metric data on the usage of specified services active on the target machine._
@@ -108,13 +109,13 @@ SSH into the control node and follow the steps below:
        [elk]
        -10.1.0.4 ansible_python_interpreter=/usr/bin/python3
 	
-- Run the playbook, and navigate to /etc/ansible/ansible.cfg to check that the installation worked as expected.  
-	-Network communcations can be confirmed by running bash command in _ansible all -m ping_ in while attached to control node.
+- Run the playbook, and navigate to _/etc/ansible/ansible.cfg_ to check that the installation worked as expected.  
+	-Network communcations can be confirmed by running bash command _ansible all -m ping_ in while attached to control node.
 
 _TODO: Answer the following questions to fill in the blanks:_
 - _The playbook is a YAML file.  For example, _Ansible/install-elk.yml.txt_ is the playbook for installing the necessary programs for the ELK server to run.  This file must be copied to the Ansible Container that is attached and running on the Jump Box VM._
-- _One must update the _/etc/ansible/hosts_ file in order to make Ansible run the playbook on a specific machine. One specifies which machine to install the ELk Server on versus which to install the Filebeat on by first creating separate YAML playbooks for each task; each one either installing ELK or Filebeat.  Then, one must create and edit a separate Filebeat Configuration file within their Ansible Container and save this file to the _/etc/ansible/roles_ Directory, such as _Ansible/filebeat-config.yml.txt_.  Editing this Configuration file specifies via Private IP which VM will have Filebeat installed on it.  Specifically by naming the host of the output for Elasticsearch, the host machine's corresponding Elasticsearch credentials (under output.elasticsearch), and the specified host for interfacing with Kibana (under setup.kibana). All of this taking place, of course, assuming one has already edited their _/etc/ansible/hosts_ file to reflect their desired groupings of VM's between Webservers and ELK._
-- _One should then navigate to _http://[http://23.99.195.0]:5601/app/kibana_ to verify that their ELK Server is receiving Metricbeat and Logbeat data displayed on their Kibana Interface._
+- _One must update the _/etc/ansible/hosts_ file in order to make Ansible run the playbook on a specific machine. One specifies which machine to install the ELk Server on versus which to install the Filebeat on by first creating separate YAML playbooks for each task; each one either installing ELK or Filebeat.  Then, one must create and edit a separate Filebeat Configuration file within their Ansible Container and save this file to the _/etc/ansible/roles_ Directory, such as _Ansible/filebeat-config.yml.txt_.  Editing this Configuration file specifies via Private IP which VM will have Filebeat installed on it.  Specifically by naming the host of the output for Elasticsearch, the host machine's corresponding Elasticsearch credentials (under _output.elasticsearch_), and the specified host for interfacing with Kibana (under _setup.kibana_). All of this taking place, of course, assuming one has already edited their _/etc/ansible/hosts_ file to reflect their desired groupings of VM's between Webservers and ELK._
+- One should then navigate to _http://http://23.99.195.0:5601/app/kibana_ to verify that their ELK Server is receiving Metricbeat and Logbeat data displayed on their Kibana Interface.
 
 **Bonus**
 
@@ -122,11 +123,11 @@ The specific commands a user will need to run and download the playbook, update 
 
 	SSH to your Jump Box VM with ssh azadmin@Jump-Box-Provisioner-IP
 
-	Start and Attach Ansible Container with _sudo docker start <docker-name>_ followed by _sudo docker attach <docker-name>_
+	Start and Attach Ansible Container with _sudo docker start [docker-name]_ followed by _sudo docker attach [docker-name]_
 
 	Navigate to _/etc/ansible_ and configure _/etc/ansible/hosts_ to reflect Webservers and ELK hosts with _nano /etc/ansible/hosts_.
 
-	Edit _/etc/ansible/ansible.cfg_ file to ensure Python interpreter with nano /etc/ansible/ansible.cfg
+	Edit _/etc/ansible/ansible.cfg_ file to ensure Python interpreter with _nano /etc/ansible/ansible.cfg_
 
 	Run the necessary Playbooks:
 
@@ -142,4 +143,4 @@ The specific commands a user will need to run and download the playbook, update 
 
 	ansible-playbook /etc/ansible/metricbeat-playbook.yml
 
-If no errors are observed in the output of the above playbooks, then navigate to http://[ELK.VM.PUBLIC.IP]:5601/app/kibana_ to review beat data recorded by ELK Server deployment.
+	If no errors are observed in the output of the above playbooks, then navigate to _(http://23.99.195.0:5601/app/kibana)_ to review beat data recorded by ELK Server deployment.
