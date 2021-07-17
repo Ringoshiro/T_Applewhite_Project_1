@@ -143,4 +143,4 @@ The specific commands a user will need to run and download the playbook, update 
 
 	ansible-playbook /etc/ansible/metricbeat-playbook.yml
 
-	If no errors are observed in the output of the above playbooks, then navigate to _(http://23.99.195.0:5601/app/kibana)_ to review beat data recorded by ELK Server deployment.
+	If no errors are observed in the output of the above playbooks, then navigate to (http://23.99.195.0:5601/app/kibana) to review beat data recorded by ELK Server deployment.
