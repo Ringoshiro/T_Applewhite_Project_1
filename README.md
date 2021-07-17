@@ -72,19 +72,21 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 The playbook implements the following tasks:
 - _Install Docker configured with Python module and download DVWA image, in this case "cyberxsecurity/dvwa"._
 - _Add access to Elastic repositories connected to the necessary software required for ELK Stack functionality._
-- _Start and Attach previously installed Docker to Jump-Box VM to connect to ELK Server.
+- _Start and Attach previously installed Docker to Jump-Box VM to connect to ELK Server._
 - _Edit necessary config files to habe proper credentialing required for the VM's on the network to communicate for ELK Stack._  
 - _Run necessary playbooks to install Elasticsearch, Kibana, Logstash, Filebeat, and Metricbeat._
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-![](T_Applewhite_Project_1/Images/docker_ps_screenshot.PNG)
+![](Images/docker_ps_screenshot.PNG)
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-[webservers]
-	- web-1: Private IP: _10.0.0.5 _
-	- web-2: Private IP: _10.0.0.6 _
+	
+	[webservers]
+	web-1: Private IP: _10.0.0.5 _	
+	web-2: Private IP: _10.0.0.6 _
+
 We have installed the following Beats on these machines:
 - Filebeat
 - Metricbeat
@@ -109,7 +111,7 @@ SSH into the control node and follow the steps below:
 _TODO: Answer the following questions to fill in the blanks:_
 - _The playbook is a YAML file.  For example, _Ansible/install-elk.yml.txt_ is the playbook for installing the necessary programs for the ELK server to run.  This file must be copied to the Ansible Container that is attached and running on the Jump Box VM._
 - _One must update the _/etc/ansible/hosts_ file in order to make Ansible run the playbook on a specific machine. One specifies which machine to install the ELk Server on versus which to install the Filebeat on by first creating separate YAML playbooks for each task; each one either installing ELK or Filebeat.  Then, one must create and edit a separate Filebeat Configuration file within their Ansible Container and save this file to the _/etc/ansible/roles_ Directory, such as _Ansible/filebeat-config.yml.txt_.  Editing this Configuration file specifies via Private IP which VM will have Filebeat installed on it.  Specifically by naming the host of the output for Elasticsearch, the host machine's corresponding Elasticsearch credentials (under output.elasticsearch), and the specified host for interfacing with Kibana (under setup.kibana). All of this taking place, of course, assuming one has already edited their _/etc/ansible/hosts_ file to reflect their desired groupings of VM's between Webservers and ELK._
-- _One should then navigate to _http://[ELK.VM.Public.IP]:5601/app/kibana_ to verify that their ELK Server is receiving Metricbeat and Logbeat data displayed on their Kibana Interface._
+- _One should then navigate to _http://[http://23.99.195.0]:5601/app/kibana_ to verify that their ELK Server is receiving Metricbeat and Logbeat data displayed on their Kibana Interface._
 
 **Bonus**
 
