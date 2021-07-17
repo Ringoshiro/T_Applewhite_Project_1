@@ -26,7 +26,7 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly _available/accessible_, in addition to restricting unauthorized access to the network.
+Load balancing ensures that the application will be highly _available/accessible_, in addition to _restricting unauthorized access to the network._
 
 _Load Balancers Protect the application's Availability, or the ability to connect to a one of multiple connected webservers in the most efficient manner possible.  The advantage of a jump box lies essentially in the fact that it is the sole connection and access point that can securely connect to the web servers.  Thus, the overall number of vulnerable access points for the entire network security group is minimized, along with the corresponding possible vectors of attack.  Furthermore, any sort of remote connection to the jump box can be more easily documented, intercepted, and mitigated; since Network Security Professionals can direct most of their time and attention to the security of one virtual machine rather than each one individually._
 
