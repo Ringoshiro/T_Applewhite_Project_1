@@ -100,13 +100,16 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the _.ssh/id_rsa.pub_ for your Ansible Docker file to the 'Reset Password' section under the Azure Portal Settings of the desired VM as to allow SSH.
 - Update the _/etc/ansible/hosts_ file to include the Webservers and ELK Server as hosts, including both their Private IP Address and the necessary Python line to provide the Python Interpreter.  For example:
-	-[webservers]
-	 10.0.0.5 ansible_python_interpreter=/usr/bin/python3
-   10.0.0.6 ansible_python_interpreter=/usr/bin/python3
-	-[elk]
-	 10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+
+       [webservers]
+       -10.0.0.5 ansible_python_interpreter=/usr/bin/python3  
+       -10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+	
+       [elk]
+       -10.1.0.4 ansible_python_interpreter=/usr/bin/python3
+	
 - Run the playbook, and navigate to /etc/ansible/ansible.cfg to check that the installation worked as expected.  
-	-Network communcations can be confirmed by running bash command in "ansible all -m ping" in while attached to control node.
+	-Network communcations can be confirmed by running bash command in _ansible all -m ping_ in while attached to control node.
 
 _TODO: Answer the following questions to fill in the blanks:_
 - _The playbook is a YAML file.  For example, _Ansible/install-elk.yml.txt_ is the playbook for installing the necessary programs for the ELK server to run.  This file must be copied to the Ansible Container that is attached and running on the Jump Box VM._
