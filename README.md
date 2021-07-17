@@ -72,7 +72,7 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 The playbook implements the following tasks:
 - _Install Docker configured with Python module and download DVWA image, in this case "cyberxsecurity/dvwa"._
 - _Add access to Elastic repositories connected to the necessary software required for ELK Stack functionality._
-- _Start and Attach previously installed Docker to Jump-Box VM to connect to ELK Server.
+- _Start and Attach previously installed Docker to Jump-Box VM to connect to ELK Server._
 - _Edit necessary config files to habe proper credentialing required for the VM's on the network to communicate for ELK Stack._  
 - _Run necessary playbooks to install Elasticsearch, Kibana, Logstash, Filebeat, and Metricbeat._
 
