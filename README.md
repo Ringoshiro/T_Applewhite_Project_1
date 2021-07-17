@@ -114,15 +114,16 @@ _TODO: Answer the following questions to fill in the blanks:_
 **Bonus**
 
 The specific commands a user will need to run and download the playbook, update the files, and run the playbooks to install ELK, Filebeat, and Metricbeat are as follows:
--SSH to your Jump Box VM with ssh azadmin@<Jump-Box-Provisioner-PublicIP>
--Start and Attach Ansible Container with _sudo docker start <docker-name>_ followed by _sudo docker attach <docker-name>_
--Navigate to _/etc/ansible_ and configure _/etc/ansible/hosts_ to reflect Webservers and ELK hosts with _nano /etc/ansible/hosts_.
--Edit _/etc/ansible/ansible.cfg_ file to ensure Python interpreter with nano /etc/ansible/ansible.cfg
--Run the necessary Playbooks:
--ansible-playbook /etc/ansible/pentest.yml
--ansible-playbook /etc/ansible/install-elk.yml
--nano /etc/ansible/roles/filebeat-config.yml
--ansible-playbook /etc/ansible/roles/filebeat-playbook.yml
--nano /etc/ansible/metricbeat-config.yml
--ansible-playbook /etc/ansible/metricbeat-playbook.yml
--If no errors are observed in the output of the above playbooks, then navigate to http://[ELK.VM.PUBLIC.IP]:5601/app/kibana_ to review beat data recorded by ELK Server deployment.
+SSH to your Jump Box VM with ssh azadmin@<Jump-Box-Provisioner-PublicIP>
+Start and Attach Ansible Container with _sudo docker start <docker-name>_ followed by _sudo docker attach <docker-name>_
+Navigate to _/etc/ansible_ and configure _/etc/ansible/hosts_ to reflect Webservers and ELK hosts with _nano /etc/ansible/hosts_.
+Edit _/etc/ansible/ansible.cfg_ file to ensure Python interpreter with nano /etc/ansible/ansible.cfg
+Run the necessary Playbooks:
+ansible-playbook /etc/ansible/pentest.yml
+ansible-playbook /etc/ansible/install-elk.yml
+nano /etc/ansible/roles/filebeat-config.yml
+ansible-playbook /etc/ansible/roles/filebeat-playbook.yml
+nano /etc/ansible/metricbeat-config.yml
+ansible-playbook /etc/ansible/metricbeat-playbook.yml
+
+If no errors are observed in the output of the above playbooks, then navigate to http://[ELK.VM.PUBLIC.IP]:5601/app/kibana_ to review beat data recorded by ELK Server deployment.
