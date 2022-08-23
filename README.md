@@ -59,8 +59,8 @@ A summary of the access policies in place can be found in the table below.
 | Name                     | Publicly Accessible | Allowed IP Addresses                                                                      |
 |--------------------------|---------------------|-------------------------------------------------------------------------------------------|
 | Jump-Box-Provisioner     | No                  | (SSH only from Local Host IP 107.220.192.108/32)                                          |
-| web-1                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)                      |
-| web-2                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/32)                      |
+| web-1                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/24)                      |
+| web-2                    | No                  | (HTTP and SSH from Local Host IP, and SSH from Jump-Box 10.0.0.4/24)                      |
 | XCorpRed-Team-ELK-Server | No                  | (SSH from 10.1.0.0/16 and HTTP from Local Host IP to (http://23.99.195.0:5601/app/kibana) |
 
 
